@@ -18,11 +18,12 @@ function Signin(props) {
         try {
             const response = await axios.post("http://localhost:8080/servlet_study_junil/auth/signin", signinInput);
 
-            if(!response.data) {
+            if(!response.data.token) {
                 alert("로그인 실패")
                 return;
             }
 
+            localStorage.setItem("token", response.data?.token);
             alert("환영합니다.");
             
         }catch(error) {
